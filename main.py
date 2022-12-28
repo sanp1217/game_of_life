@@ -18,8 +18,22 @@ def random_state(width, height):
     return state
 
 
+def render(board_state):
+    for i in range(len(board_state)):
+        print("")
+
+        # % is symbol for alive, . is for dead cell.
+        for j in range(len(board_state[0])):
+            if board_state[i][j] == 1:
+                print('%', end=" ")
+            else:
+                print('.', end=" ")
+
+
 def main():
-    print((random_state(1, 4)))
+    board = random_state(20, 30)
+    print(board)
+    render(board)
 
 
 if __name__ == "__main__":
