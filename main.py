@@ -30,6 +30,10 @@ def render(board_state):
                 print('.', end=" ")
 
 
+def next_board_state(board_state):
+    return 0
+
+
 def main():
     board = random_state(20, 30)
     print(board)
