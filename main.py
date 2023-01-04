@@ -29,15 +29,42 @@ def render(board_state):
             else:
                 print('.', end=" ")
 
+# Takes the coordinates of the current cell and the board
+# state as parameters and returns how many neighbors are around that cell.
+def get_cell_live_neighbors(cell_coord, board_state):
+    live_neighbors = 0
+    height = len(board_state)
+    width = len(board_state[0])
+    x = cell_coord[0]
+    y = cell_coord[1]
 
-def next_board_state(board_state):
-    return 0
+    for i in range((x - 1), (x + 2)):
+        #to not go off the edge of board
+        if i < 0 or i >= width: continue
+
+        for j in range((y - 1), (y + 2)):
+            #to not go off edge of board
+            if j < 0 or j >= height: continue
+
+            #So the current cell is not counted as a neighbor
+            if i == x and j == y: continue
+
+            if board_state[i][j] == 1:
+                live_neighbors += 1
+
+    return live_neighbors
+
+
+def next_board_state(initial_state):
+    new_state = []
 
 
 def main():
-    board = random_state(20, 30)
-    print(board)
-    render(board)
+    board = random_state(6, 6)
+    for i in board:
+        print(*i)
+    # render(board)
+    print(get_cell_live_neighbors((0, 5), board))
 
 
 if __name__ == "__main__":
