@@ -71,7 +71,16 @@ def get_cell_state(live_neighbors, curr_cell_state):
 
 
 def next_board_state(initial_state):
-    new_state = []
+    new_state = random_state(len(initial_state[0]), len(initial_state))
+    live_neighbors = 0
+
+    for i in range(len(initial_state)):
+
+        for j in range(len(initial_state[0])):
+            live_neighbors = get_cell_live_neighbors((i, j), initial_state)
+            new_state[i][j] = get_cell_state(live_neighbors, initial_state[i][j])
+
+    return new_state
 
 
 def main():
@@ -79,8 +88,12 @@ def main():
     for i in board:
         print(*i)
     # render(board)
-    print(get_cell_live_neighbors((0, 5), board))
+    
+    new_board = next_board_state(board)
 
+    print()
+    for j in new_board:
+        print(*j)
 
 if __name__ == "__main__":
     main()
