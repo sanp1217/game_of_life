@@ -29,6 +29,7 @@ def render(board_state):
             else:
                 print('.', end=" ")
 
+
 # Takes the coordinates of the current cell and the board
 # state as parameters and returns how many neighbors are around that cell.
 def get_cell_live_neighbors(cell_coord, board_state):
@@ -55,12 +56,26 @@ def get_cell_live_neighbors(cell_coord, board_state):
     return live_neighbors
 
 
+def get_cell_state(live_neighbors, curr_cell_state):
+    if curr_cell_state == 1:
+        if live_neighbors <= 1 or live_neighbors > 3:
+            return 0
+        else:
+            return 1
+
+    elif curr_cell_state == 0:
+        if live_neighbors == 3:
+            return 1
+        else:
+            return 0
+
+
 def next_board_state(initial_state):
     new_state = []
 
 
 def main():
-    board = random_state(6, 6)
+    board = random_state(3, 3)
     for i in board:
         print(*i)
     # render(board)
