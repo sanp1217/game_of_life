@@ -1,4 +1,5 @@
 import random
+import time
 
 
 def random_state(width, height):
@@ -29,6 +30,7 @@ def render(board_state):
             else:
                 print('.', end=" ")
 
+    print()
 
 # Takes the coordinates of the current cell and the board
 # state as parameters and returns how many neighbors are around that cell.
@@ -83,17 +85,18 @@ def next_board_state(initial_state):
     return new_state
 
 
-def main():
-    board = random_state(3, 3)
-    for i in board:
-        print(*i)
-    # render(board)
-    
-    new_board = next_board_state(board)
+def run_life(starting_state):
+    new_state = starting_state
 
-    print()
-    for j in new_board:
-        print(*j)
+    while 1:
+        render(new_state)
+        new_state = next_board_state(new_state)
+        time.sleep(2)
+
+
+def main():
+    board = random_state(50, 50)
+    run_life(board)
 
 if __name__ == "__main__":
     main()
